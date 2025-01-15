@@ -7,6 +7,7 @@ import { handleMysqlDump } from "../dbs/mysql";
 import { handlePostgresDump } from "../dbs/postgres";
 import { Destinations } from "../@types/config";
 import { sendToDestinations } from "./location.utils";
+import { handleMongodbsDump } from "../dbs/mongo";
 
 const ensureDirectory = (dirPath: string) => {
   if (!existsSync(dirPath)) {
@@ -91,6 +92,8 @@ const backupHelper = async (
       // NOTE: mutating the dumps array
       handlePostgresDump(data, dumps);
       break;
+    case"mongo":
+      handleMongodbsDump(data,dumps)
     default:
       return Promise.reject(
         new Error(`[-] Unsupported database type: ${data.type}`)

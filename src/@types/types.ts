@@ -8,7 +8,7 @@ export type ConfigType = {
   db_name: string;
   user: string;
   password: string;
-  type: "postgres" | "mysql";
+  type: "postgres" | "mysql" |"mongo";
   port: number;
 };
 
